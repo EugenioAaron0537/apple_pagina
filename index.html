@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diseña Aplicaciones Web - Proyecto</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #18181c;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(24, 24, 28, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #2d2d35;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo {
+      height: 32px;
+      width: auto;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #a0a0ab;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    /* Botones Navbar */
+    .btn-nav {
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .btn-login-nav {
+      background-color: #22222a;
+      color: #ffffff !important;
+      border: 1px solid #3d3d48;
+    }
+
+    .btn-login-nav:hover {
+      background-color: #2d2d35;
+    }
+
+    .btn-register-nav {
+      background-color: #0071e3;
+      color: #ffffff !important;
+    }
+
+    .btn-register-nav:hover {
+      background-color: #0077ed;
+    }
+
+    /* Contenedor Principal */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .hero-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .hero-title h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero-title p {
+      color: #a0a0ab;
+      font-size: 18px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #2d2d35;
+    }
+
+    /* Grilla de Productos */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .product-card {
+      background-color: #22222a;
+      border: 1px solid #2d2d35;
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: #3d3d48;
+    }
+
+    .badge-tag {
+      color: #f56300;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      min-height: 16px;
+    }
+
+    .product-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 4px 0 16px 0;
+      min-height: 48px;
+    }
+
+    .product-img-container {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .product-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .price-text {
+      font-size: 13px;
+      color: #a0a0ab;
+      line-height: 1.4;
+    }
+
+    .price-text strong {
+      color: #ffffff;
+    }
+
+    /* Tarjeta de Acceso */
+    .access-section {
+      background-color: #22222a;
+      border: 1px solid #2d2d35;
+      border-radius: 18px;
+      padding: 40px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .access-section h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .access-section p {
+      color: #a0a0ab;
+      margin-bottom: 24px;
+    }
+
+    .access-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-main {
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: #0071e3;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0077ed;
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      color: #18181c;
+    }
+
+    .btn-secondary:hover {
+      background-color: #e5e5e5;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #18181c;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #2d2d35;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-name {
+      font-weight: bold;
+      font-size: 16px;
+      color: #ffffff;
+    }
+
+    .footer-info {
+      font-style: italic;
+      font-size: 14px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de Navegación -->
+  <header>
+    <nav>
+      <div class="nav-left">
+        <img class="nav-logo" src="img/logo.png" alt="Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="#iphones">iPhones</a></li>
+        <li><a href="#ipads">iPads</a></li>
+        <li><a href="login.php" class="btn-nav btn-login-nav">Iniciar Sesión</a></li>
+        <li><a href="registro.php" class="btn-nav btn-register-nav">Registrarse</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="hero-title">
+      <h1>Especial Apple Store</h1>
+      <p>Diseño de interfaz para la materia <strong>Diseña Aplicaciones Web</strong>.</p>
+    </div>
+
+    <!-- iPhones -->
+    <h2 class="section-title" id="iphones">Modelos de iPhone</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div>
+          <span class="badge-tag">NUEVO</span>
+          <h3 class="product-title">iPhone Duo</h3>
+          <div class="product-img-container">
+            <img class="product-img" src="img/iphone-duo.png" alt="iPhone Duo">
+          </div>
+        </div>
+        <p class="price-text">Desde <strong>$47,999</strong> de contado o 18 MSI desde <strong>$2,666.61</strong>°</p>
+      </div>
+
+      <div class="product-card">
+        <div>
+          <span class="badge-tag">NUEVO</span>
+          <h3 class="product-title">iPhone 18 Pro y<br>iPhone 18 Pro Max</h3>
+          <div class="product-img-container">
+            <img class="product-img" src="img/iphone-18-pro.png" alt="iPhone 18 Pro">
+          </div>
+        </div>
+        <p class="price-text">Desde <strong>$29,999</strong> de contado o 18 MSI desde <strong>$1,666.61</strong>°</p>
+      </div>
+
+      <div class="product-card">
+        <div>
+          <span class="badge-tag"></span>
+          <h3 class="product-title">iPhone Air</h3>
+          <div class="product-img-container">
+            <img class="product-img" src="img/iphone-air.png" alt="iPhone Air">
+          </div>
+        </div>
+        <p class="price-text">Desde <strong>$25,999</strong> de contado o 18 MSI desde <strong>$1,444.39</strong>°</p>
+      </div>
+
+      <div class="product-card">
+        <div>
+          <span class="badge-tag"></span>
+          <h3 class="product-title">iPhone 17</h3>
+          <div class="product-img-container">
+            <img class="product-img" src="img/iphone-17.png" alt="iPhone 17">
+          </div>
+        </div>
+        <p class="price-text">Desde <strong>$21,999</strong> de contado o 18 MSI desde <strong>$1,222.17</strong>°</p>
+      </div>
+    </div>
+
+    <!-- iPads -->
+    <h2 class="section-title" id="ipads">Modelos de iPad</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div>
+          <span class="badge-tag"></span>
+          <h3 class="product-title">iPad Pro</h3>
+          <div class="product-img-container">
+            <img class="product-img" src="img/ipad-pro.png" alt="iPad Pro">
+          </div>
+        </div>
+        <p class="price-text">Desde <strong>$29,999</strong> de contado o 18 MSI desde <strong>$1,666.61</strong>°</p>
+      </div>
+
+      <div class="product-card">
+        <div>
+          <span class="badge-tag"></span>
+          <h3 class="product-title">iPad Air</h3>
+          <div class="product-img-container">
+            <img class="product-img" src="img/ipad-air.png" alt="iPad Air">
+          </div>
+        </div>
+        <p class="price-text">Desde <strong>$18,799</strong> de contado o 18 MSI desde <strong>$1,044.39</strong>°</p>
+      </div>
+
+      <div class="product-card">
+        <div>
+          <span class="badge-tag"></span>
+          <h3 class="product-title">iPad</h3>
+          <div class="product-img-container">
+            <img class="product-img" src="img/ipad.png" alt="iPad">
+          </div>
+        </div>
+        <p class="price-text">Desde <strong>$10,999</strong> de contado o 18 MSI desde <strong>$611.06</strong>°</p>
+      </div>
+
+      <div class="product-card">
+        <div>
+          <span class="badge-tag">PREVENTA EL 28/10</span>
+          <h3 class="product-title">iPad mini</h3>
+          <div class="product-img-container">
+            <img class="product-img" src="img/ipad-mini.png" alt="iPad mini">
+          </div>
+        </div>
+        <p class="price-text">Desde <strong>$16,999</strong> de contado o 18 MSI desde <strong>$944.39</strong>°</p>
+      </div>
+    </div>
+
+    <!-- Sección de redirección de accesos -->
+    <div class="access-section">
+      <h2>Acceso a la Plataforma</h2>
+      <p>Selecciona una opción para acceder o crear tu cuenta de usuario.</p>
+      <div class="access-buttons">
+        <a href="login.php" class="btn-main btn-primary">Iniciar Sesión</a>
+        <a href="registro.php" class="btn-main btn-secondary">Crear Cuenta</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-name">Eugenio Zarate Aaron David</div>
+      <div class="footer-info">5-I</div>
+      <div class="footer-info">0537</div>
+    </div>
+  </footer>
+
+</body>
+</html>
